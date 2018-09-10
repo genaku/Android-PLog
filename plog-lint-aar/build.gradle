@@ -5,6 +5,8 @@ android {
     compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION as int
     buildToolsVersion rootProject.ext.BUILD_TOOLS_VERSION as String
 
+    publishNonDefault true
+
     defaultConfig {
         minSdkVersion rootProject.ext.MIN_SDK_VERSION as int
         targetSdkVersion rootProject.ext.TARGET_SDK_VERSION as int

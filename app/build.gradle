@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('sss.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION as int
     buildToolsVersion rootProject.ext.BUILD_TOOLS_VERSION as String
-
     defaultConfig {
         applicationId "org.mym.prettylog"
         minSdkVersion rootProject.ext.MIN_SDK_VERSION as int
@@ -18,6 +25,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     packagingOptions {
@@ -27,6 +35,7 @@ android {
     lintOptions {
         abortOnError false
     }
+
 }
 
 dependencies {
@@ -34,20 +43,25 @@ dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.SUPPORT_VERSION as String}"
     compile "com.android.support:design:${rootProject.ext.SUPPORT_VERSION as String}"
     compile 'org.mym.material:md-colors:1.0.0'
-
     compile('com.github.hotchemi:permissionsdispatcher:2.4.0') {
         exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
-
     compile(rootProject.ext.BUTTERKNIFE as String)
     annotationProcessor(rootProject.ext.BUTTERKNIFE_APT as String)
+    debugCompile project(path: ':plog', configuration: 'debug')
+    releaseCompile project(path: ':plog', configuration: 'release')
 
-    compile project(':plog')
-    compile project(':plog-printer')
-    compile project(':plog-timing')
-    compile project(':plog-formatter')
-    compile project(':plog-lint-aar')
-//    compile 'org.mym.plog:android-plog:1.7.0'
+    debugCompile project(path: ':plog-printer', configuration: 'debug')
+    releaseCompile project(path: ':plog-printer', configuration: 'release')
 
+    debugCompile project(path: ':plog-timing', configuration: 'debug')
+    releaseCompile project(path: ':plog-timing', configuration: 'release')
+
+    debugCompile project(path: ':plog-formatter', configuration: 'debug')
+    releaseCompile project(path: ':plog-formatter', configuration: 'release')
+
+    debugCompile project(path: ':plog-lint-aar', configuration: 'debug')
+    releaseCompile project(path: ':plog-lint-aar', configuration: 'release')
+    //    compile 'org.mym.plog:android-plog:1.7.0'
 }
