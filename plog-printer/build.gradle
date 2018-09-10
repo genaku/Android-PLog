@@ -26,8 +26,7 @@ dependencies {
 //    compile 'org.mym.plog:plog-formatter:${VERSION_NAME}'
 
     //For develop only
-    debugCompile project(path: ':plog', configuration: 'debug')
-    releaseCompile project(path: ':plog', configuration: 'release')
+    provided project(path: ':plog')
 //    provided project(':plog-formatter')
     provided "com.android.support:support-annotations:${rootProject.ext.SUPPORT_VERSION as String}"
 }

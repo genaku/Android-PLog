@@ -40,19 +40,11 @@ dependencies {
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
     compile(rootProject.ext.BUTTERKNIFE as String)
     annotationProcessor(rootProject.ext.BUTTERKNIFE_APT as String)
-    debugCompile project(path: ':plog', configuration: 'debug')
-    releaseCompile project(path: ':plog', configuration: 'release')
-
-    debugCompile project(path: ':plog-printer', configuration: 'debug')
-    releaseCompile project(path: ':plog-printer', configuration: 'release')
-
-    debugCompile project(path: ':plog-timing', configuration: 'debug')
-    releaseCompile project(path: ':plog-timing', configuration: 'release')
-
-    debugCompile project(path: ':plog-formatter', configuration: 'debug')
-    releaseCompile project(path: ':plog-formatter', configuration: 'release')
-
-    debugCompile project(path: ':plog-lint-aar', configuration: 'debug')
-    releaseCompile project(path: ':plog-lint-aar', configuration: 'release')
+    debugCompile project(path: ':plog')
+    releaseCompile project(path: ':plog-no-op')
+    compile project(path: ':plog-printer')
+    compile project(path: ':plog-timing')
+    compile project(path: ':plog-formatter')
+    compile project(path: ':plog-lint-aar')
     //    compile 'org.mym.plog:android-plog:1.7.0'
 }
