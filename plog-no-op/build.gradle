@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+
+android {
+    compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION as int
+    buildToolsVersion rootProject.ext.BUILD_TOOLS_VERSION as String
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.MIN_SDK_VERSION as int
+        targetSdkVersion rootProject.ext.TARGET_SDK_VERSION as int
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    provided "${rootProject.ext.SUPPORT_ANNOTATION as String}"
+}
+
+publish {
+    artifactId = 'plog-core-no-op'
+    repoName = BINTRAY_REPO
+    // userOrg =
+    groupId = GROUP
+    uploadName = POM_NAME
+    publishVersion = VERSION_NAME
+    desc = POM_DESCRIPTION
+    website = POM_URL
+    licences = POM_LICENCE_NAME
+}
